@@ -1,0 +1,90 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Overview:
+	Has a quest that controls behavior
+	Uses a spell to open a menu
+	Executes the option selected in the menu
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Has a quest that controls behavior
+	Has a <core> script
+		Initializes variables
+			Initializes array sizes
+		Knows the names of
+			Armor sets
+			Categories
+		Knows usage
+		Adds spells to the player OnInit()
+	Has a <current equipment> script
+		Knows what equipment set the player has equiped
+			Formlist of armor
+			Formlist of weapons
+			Armor set id
+		Clear equipment
+			Reset armor and weapon formlists
+			Clear id
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Uses a spell to open a menu
+	Don't do anything if player is changing clothes
+	Spells calls the script that <Executes the option selected in the menu>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Executes the option selected in the menu
+	Create a menu
+		Get names to show in the menu
+			Get names from quest
+				Get category names
+				Get armor set names
+			Sort armor sets by usage
+				Get range to work with
+				Join usage with index in comma separated "usage,index" in a new array
+				Sort string array
+				Split to get sorted indexes
+			Show armor sets
+				Don't show those that haven't been used
+				Get names from sorted indexes
+				Show <x> most used
+					<x> is a global variable
+			Show categories
+		Wait for user input
+	Execute user input
+		Can be armor set
+			Open armor set management menu
+		Can be category
+			Open category management menu
+	Reset menus
+	Dispell
+
+========================================	
+Open armor set management menu
+	Options:
+		Equip set
+			Do nothing if equip set is empty
+			Store current set if it was already saved somewhere
+			Equip 
+			Tell the main quest that new equipment has added
+			Add one usage
+		Save current armor to set
+			Store only if current set is empty
+			Add one usage
+		Save armor and weapon
+			Save arrows/bolts too
+			Add one usage
+		Rename
+			Prompt for a new name
+			Tell quest to rename armor set
+		Clear
+			Tell the quest to clear it
+				Ask for clear name
+				Clear usage
+				Clear current outfit manager
+			Move items to player inventory
+
+========================================
+Open category management menu
+	Fill with armor sets
+		Get names from quest
+			Get armor set names
+	Wait for input
+	Execute user input
+		Open armor set management menu

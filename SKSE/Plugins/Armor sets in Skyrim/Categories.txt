@@ -1,0 +1,7 @@
+[
+    "Combat",
+    "Work",
+    "Assasination",
+    "Disguises 01",
+    "Disguises 02"
+]
